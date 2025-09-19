@@ -1,0 +1,8 @@
+database_url: "postgresql://neondb_owner:npg_IaPb5hnJ9WsG@ep-noisy-bush-afq0kkt1-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+user_agent: "weather-risk (luisangel.esparza2022@gmail.com)"
+data_source: "api.weather.gov"
+log_path: "log/ingestion.log"
+retry:
+  max: 3
+  backoff: 2
+
