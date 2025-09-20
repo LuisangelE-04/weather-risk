@@ -51,7 +51,7 @@ def get_grid_data(pointURL):
   req.raise_for_status()
   return req.json()
 
-def get_openweather_minutely(lat, lon):
+def get_openweather(lat, lon):
   if not openweather_api_key or not openweather_base_url:
     raise ValueError("OpenWeather API key or base URL not configured")
   
