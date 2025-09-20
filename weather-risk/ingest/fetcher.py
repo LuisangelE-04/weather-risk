@@ -83,14 +83,14 @@ if __name__ == "__main__":
   grid_data = get_grid_data(props['forecastGridData'])
   keys = list(grid_data['properties'].keys())
 
-
+  '''
   openweather_data = get_openweather_minutely(lat, lon)
   keys = list(openweather_data.keys())
   minutely_forecast = openweather_data['minutely']
   minutely_forecast45 = minutely_forecast[:45]
   print(f"Open weather API keys are: {keys}")
-  print(f"Minutely forecast for San Marocs:\n{minutely_forecast45}")
-
+  print(f"Minutely forecast for San Marcos:\n{minutely_forecast45}")
+  '''
   '''
   print(f"Forecast Hourly: ")
   for period in propsfh[:8]:
