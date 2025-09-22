@@ -61,6 +61,7 @@ def get_openweather(lat, lon):
   return req.json()
 
 
+# remove below
 if __name__ == "__main__":
   lat = "29.8951"
   lon = "-97.9093"

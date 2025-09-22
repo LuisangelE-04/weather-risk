@@ -5,6 +5,7 @@ from .fetcher import (
 from .processor import (
   process_minutely_forecast, process_hourly_forecast, processs_daily_forecast
 )
+from .risk_score import RiskScore
 
 class WeatherLocation:
   def __init__(self, lat, lon):
@@ -19,13 +20,10 @@ class WeatherLocation:
     self.processed_minutely = process_minutely_forecast(self.openweather_forecast)
     self.processed_hourly = process_hourly_forecast(self.openweather_forecast)
     self.processed_daily = processs_daily_forecast(self.openweather_forecast)
+    self.risk_score = RiskScore(minutely_data=self.processed_minutely)
+
+  def get_rain_risk(self):
+    return self.risk_score.rain_risk_score()
 
   def print_processed(self):
     print(f"Minutely: {self.processed_minutely[:5]}\nHourly: {self.processed_hourly[:2]}\nDaily: {self.processed_daily[:2]}")
-
-
-if __name__ == "__main__":
-  loc1 = WeatherLocation("29.721345", "-95.342013")
-  loc2 = WeatherLocation("29.758828", "-95.370804")
-  loc1.print_processed()
-  loc2.print_processed()

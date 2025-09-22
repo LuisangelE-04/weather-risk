@@ -1,5 +1,3 @@
-# dict_keys(['lat', 'lon', 'timezone', 'timezone_offset', 'current', 'minutely', 'hourly', 'daily'])
-
 def process_minutely_forecast(raw_forecast):
   '''
   rtype: return [] of minutely forecast
