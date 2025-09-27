@@ -5,7 +5,7 @@ def process_risk_event(risk_payload):
   print("Recieved risk event:", risk_payload)
 
 def main():
-  last_id = "0"
+  last_id = "$"
   print("Listening for risk events...")
   while True:
     messages = read_from_queue(last_id=last_id, block=0)
@@ -16,8 +16,7 @@ def main():
           process_risk_event(risk_payload)
           last_id = msg_id
     else:
-      print("No new messages...")
-    time.sleep(2)
+      print("No new messages, waiting...")
 
 if __name__ == "__main__":
   main()
