@@ -71,22 +71,3 @@ class RiskScore:
       "total_precip_mm": total_mm,
       "risk_level": risk_level
     }
-
-
-# remove below 
-if __name__ == "__main__":
-  import json
-  import os
-
-  # Path to the test data file
-  test_data_path = os.path.join(os.path.dirname(__file__), '../dataset/minutely-precipitation.json')
-  with open(test_data_path, 'r') as f:
-    test_data = json.load(f)
-
-  print("Testing rain risk score on minutely datasets:\n")
-  for name, dataset in test_data.items():
-    minutely = dataset.get('minutely', [])
-    scorer = RiskScore(minutely_data=minutely)
-    result = scorer.rain_risk_score()
-    print(f"{name}: {result}")
-  
