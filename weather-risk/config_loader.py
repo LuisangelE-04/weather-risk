@@ -5,7 +5,7 @@ try:
   from dotenv import load_dotenv
   load_dotenv()
 except ImportError:
-  print("ptyon-dotenv not installed, using system environment variables")
+  print("python-dotenv not installed, using system environment variables")
 
 class Config:
   def __init__(self, path=None):
