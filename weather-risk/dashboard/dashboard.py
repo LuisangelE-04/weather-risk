@@ -32,26 +32,25 @@ app.layout = html.Div([
   html.Div(id='risk-gauges', style={"textAlign": "center"}),
   dcc.Interval(
     id='interval-component',
-    interval=5*1000,  # Update every 30 seconds
+    interval=5*1000,
     n_intervals=0
   )
 ])
 
 
-# Color coding for risk levels
 def risk_color(level):
   if level == 1:
-    return "#2ecc40"  # Green
+    return "#2ecc40"
   elif level == 2:
-    return "#f1c40f"  # Yellow
+    return "#f1c40f"
   elif level == 3:
-    return "#ff851b"  # Orange
+    return "#ff851b"
   elif level == 4:
-    return "#ff4136"  # Red
+    return "#ff4136"
   elif level == 5:
-    return "#85144b"  # Dark Red
+    return "#85144b"
   else:
-    return "#dddddd"  # Default gray
+    return "#dddddd"
 
 @app.callback(
   dash.dependencies.Output('risk-gauges', 'children'),
