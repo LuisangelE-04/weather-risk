@@ -62,7 +62,7 @@ class RiskScore:
     rain_detected = any(item.get('precipitation', 0) > threshold for item in window)
     risk_level, total_mm = self.calculate_risk_level(window)
 
-    return {
+    paylaod = {
       "rain_detected": rain_detected,
       "persistent_rain": persistent,
       "rain_spike": spike,
@@ -71,3 +71,5 @@ class RiskScore:
       "total_precip_mm": total_mm,
       "risk_level": risk_level
     }
+
+    return paylaod

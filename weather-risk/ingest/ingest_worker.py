@@ -1,15 +1,31 @@
-import time
-import logging
+import psycopg2
+from psycopg2.extras import Json
 from datetime import datetime, timezone
-from typing import Tuple
-
-from sqlalchemy import (
-  create_engine, Column, Integer, String, DateTime, Float, ForeignKey
-)
-
-from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
-
 from ..config_loader import Config
-from fetcher import get_point
+
+cfg = Config()
+DB_URL = cfg.database_url
+
+def save_risk_score(location_id, risk_level, risk_details, raw_data, timestamp=None, conn=DB_URL):
+  if timestamp is None:
+    timestamp = datetime.now(timezone.utc)
+  
+  with psycopg2.connect(DB_URL) as conn:
+    with conn.cursor() as cur:
+      cur.execute("""
+        INSERT INTO weatherevent (
+            location_id,
+            risk_level,
+            risk_details,
+            raw_data,
+            timestamp
+        ) VALUES (%s, %s, %s, %s, %s)
+      """, (
+        location_id,
+        risk_level,
+        Json(risk_details),
+        Json(raw_data),
+        timestamp
+      ))
+    conn.commit()
+

@@ -8,15 +8,23 @@ from .processor import (
 from .risk_score import RiskScore
 
 class WeatherLocation:
-  def __init__(self, lat, lon):
+  def __init__(self, lat, lon, source='api', custom_data=None):
     self.lat = lat
     self.lon = lon
+
     self.point = get_point(lat, lon)
     self.props = self.point["properties"]
     self.grid_data = get_grid_data(self.props['forecastGridData'])
     self.daily_forecast = get_forecast(self.props['forecast'])
     self.hourly_forecast = get_hourly_forecast(self.props["forecastHourly"])
-    self.openweather_forecast = get_openweather(lat, lon)
+
+    if source == 'api':
+      self.openweather_forecast = get_openweather(lat, lon)
+    elif source == 'custom' and custom_data is not None:
+      self.openweather_forecast = custom_data
+    else:
+      self.openweather_forecast = {"minutely": [], "hourly": [], "daily": []}
+
     self.processed_minutely = process_minutely_forecast(self.openweather_forecast)
     self.processed_hourly = process_hourly_forecast(self.openweather_forecast)
     self.processed_daily = processs_daily_forecast(self.openweather_forecast)
