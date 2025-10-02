@@ -44,7 +44,7 @@ def live_update_generator():
 
     yield payload
     iteration += 1
-    time.sleep(600)
+    time.sleep(10)
 
 def get_latest_payload():
   payload = f"--- Update at {time.strftime('%Y-%m-%d %H:%M:%S')} ---"

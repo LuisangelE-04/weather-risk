@@ -12,7 +12,8 @@ def save_risk_score(location_id, risk_level, risk_details, raw_data, timestamp=N
   
   with psycopg2.connect(DB_URL) as conn:
     with conn.cursor() as cur:
-      cur.execute("""
+      cur.execute(
+        """
         INSERT INTO weatherevent (
             location_id,
             risk_level,
@@ -20,7 +21,7 @@ def save_risk_score(location_id, risk_level, risk_details, raw_data, timestamp=N
             raw_data,
             timestamp
         ) VALUES (%s, %s, %s, %s, %s)
-      """, (
+        """, (
         location_id,
         risk_level,
         Json(risk_details),

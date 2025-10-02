@@ -21,7 +21,7 @@ class RiskScore:
           window[i].get('precipitation', 0) > threshold and
           window[i+1].get('precipitation', 0) <= threshold):
         return True
-      return False
+    return False
     
   def max_window_sum_avg(self, window, window_size):
     max_sum = 0
@@ -55,7 +55,7 @@ class RiskScore:
     return risk_level, total_mm
 
   def rain_risk_score(self, threshold=0.1, window_size=10):
-    window = self.get_window(9, 31)
+    window = self.get_window(9, 40)
     persistent = self.has_persistent_rain(window, threshold, window_size)
     spike = self.has_spike(window, threshold)
     max_sum, max_avg = self.max_window_sum_avg(window, window_size)
