@@ -1,1 +1,1 @@
-python -m weather-risk.ingest.fetcher
+python -m weather_risk.ingest.fetcher
