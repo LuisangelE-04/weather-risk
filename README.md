@@ -5,15 +5,21 @@ The following application uses real time weather data based off the openweatherm
 # How to run current application
 
 ## Starting Redis Server
+Used brew to install redis, [documentation](<https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-mac-os/>) here.
 
+To run in background run:
 ```zsh
-redis-cli
+brew services start redis
+```
+To stop the redis service run:
+```zsh
+brew services stop redis
 ```
 
 ## Starting Weather Monitor
 
 ```zsh
-python -m live_updater
+python -m weahter_risk.live_updater
 ```
 
 ## Starting Consumer Script
@@ -21,5 +27,5 @@ python -m live_updater
 Based on the application and number of consumers but for one single consumer in this current build you do. the following:
 
 ```zsh
-python -m services.consumer
+python -m weahter_risk.services.consumer
 ```
