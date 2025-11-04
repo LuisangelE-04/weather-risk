@@ -52,7 +52,7 @@ class RiskScore:
       try:
         model = ARIMA(series, order=(1, 0, 0), enforce_stationarity=False, enforce_invertibility=False)
         fit = model.fit(method_kwargs={"warn_convergence": False})
-        steps = 10  # forecast next 10 minutes
+        steps = 30
         forecast = fit.forecast(steps=steps)
         forecast_total_mm = sum(max(0.0, float(v)) / 60.0 for v in forecast)
         effective_total_mm = max(baseline_total_mm, forecast_total_mm)

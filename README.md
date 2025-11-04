@@ -7,7 +7,7 @@ The following application uses real time weather data based off the openweatherm
 ## Starting Redis Server
 Used brew to install redis, [documentation](<https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-mac-os/>) here.
 
-To run in background run:
+To start in background run:
 ```zsh
 brew services start redis
 ```
